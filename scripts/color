@@ -1,15 +1,35 @@
 #!/usr/bin/env bash
 
-# TODO (Run this script as): color magenta && echo hello && color reset
+# Usage Example:
+# ./color.sh red && echo "Hello" && ./color.sh reset
 
 color() {
     echo -ne "\033[$1;$2m"
 }
 
 declare -A color_mapping=(
-    # TODO: Add more color values
-    # Refer bash color codes
+    ['black']=30
+    ['red']=31
+    ['green']=32
+    ['yellow']=33
+    ['blue']=34
     ['magenta']=35
+    ['cyan']=36
+    ['white']=37
+    ['bright_red']=91
+    ['bright_green']=92
+    ['bright_yellow']=93
+    ['bright_blue']=94
+    ['bright_magenta']=95
+    ['bright_cyan']=96
+    ['bright_white']=97
+    ['orange']=214
+    ['pink']=206
+    ['purple']=129
+    ['light_green']=82
+    ['aqua']=45
+    ['gray']=90
+    ['light_gray']=37
 )
 
 if [[ $1 == 'reset' ]]; then
@@ -17,4 +37,3 @@ if [[ $1 == 'reset' ]]; then
 else
     color 1 ${color_mapping[$1]}
 fi
-
