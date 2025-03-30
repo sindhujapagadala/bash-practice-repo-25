@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-grep -E 'Tctl|Tdie|Package id' /sys/class/hwmon/hwmon*/temp*_label | head -n1 | cut -d':' -f1 | sed 's/label/input/' | xargs cat
-
-# Following script outputs current cpu die temperature in milidegree-celcius, convert it to celcius and fahrenheit and display as:
-#
-# Celcius: 42.0 C
-# Fahrenheit: 107.6 F
+if [[ -f "/sys/class/thermal/thermal_zone0/temp" ]]; then
+    cpu_temp=$(cat /sys/class/thermal/thermal_zone0/temp)
+    echo "CPU Temperature: ${cpu_temp} m°C"
+else
+    echo "Error: Cannot fetch CPU temperature."
+fi
